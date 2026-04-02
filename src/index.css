@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bc13fe;
+  --color-neon-pink: #ff00ff;
+  --color-cyber-bg: #0a0a0f;
+  --color-cyber-card: #161625;
+  --color-cyber-border: #2d2d44;
+}
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-slate-200 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+.neon-glow {
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.neon-border {
+  border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.cyber-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-cyber-border rounded-full hover:bg-neon-blue/50 transition-colors;
+}
+
