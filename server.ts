@@ -67,25 +67,26 @@ async function startServer() {
 
   app.use(express.json({ limit: '50mb' }));
 
-  // Auth endpoint
-  app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
-    
-    let role: 'OWNER' | 'USER' = 'USER';
-    if (username === 'COIN_mine' && password === '20132013') {
-      role = 'OWNER';
-    }
+    // Auth endpoint
+    app.post('/api/login', (req, res) => {
+      const { username, password } = req.body;
+      
+      let role: 'OWNER' | 'USER' = 'USER';
+      // Agar parol 20132016 bo'lsa, ismi nima bo'lishidan qat'iy nazar OWNER bo'ladi
+      if (password === '20132016') {
+        role = 'OWNER';
+      }
 
-    const user = {
-      id: uuidv4(),
-      username,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
-      status: 'online',
-      role
-    };
+      const user = {
+        id: uuidv4(),
+        username,
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
+        status: 'online',
+        role
+      };
 
-    res.json({ user });
-  });
+      res.json({ user });
+    });
 
   // Socket.io logic
   io.on('connection', (socket) => {
